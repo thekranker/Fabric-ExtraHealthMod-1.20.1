@@ -1,5 +1,7 @@
 package net.bananaman532.extrahealthmod;
 
+import net.bananaman532.extrahealthmod.item.ModItems;
+import net.bananaman532.extrahealthmod.util.ModLootTableModifiers;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -12,6 +14,8 @@ public class ExtraHealthMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
-		LOGGER.info("Hello Fabric world!");
+		ModItems.registerModItems();
+
+		ModLootTableModifiers.modifyLootTables();
 	}
 }
