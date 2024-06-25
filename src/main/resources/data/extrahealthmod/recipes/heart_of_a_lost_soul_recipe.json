@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "minecraft:soul_sand"
+    },
+    "A": {
+      "item": "minecraft:ancient_debris"
+    },
+    "N": {
+      "item": "minecraft:nether_wart"
+    }
+  },
+  "pattern": [
+    "SNS",
+    "NAN",
+    "SNS"
+  ],
+  "result": {
+    "item": "extrahealthmod:heart"
+  }
+}
