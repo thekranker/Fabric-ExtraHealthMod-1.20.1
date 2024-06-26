@@ -9,6 +9,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
+import net.minecraft.text.Text;
+import net.minecraft.server.network.ServerPlayerEntity;
+
 public class HeartOfALostSoulItem extends Item {
 
     public HeartOfALostSoulItem(Settings settings) {
@@ -20,31 +23,34 @@ public class HeartOfALostSoulItem extends Item {
 
         ItemStack itemStack = user.getStackInHand(hand);
 
+        if (user instanceof ServerPlayerEntity serverPlayer) {
 
-        if (!world.isClient) {
-            System.out.println("use method called on server side");
+            // Checks to see that the method is executed on the server side
+            if (!world.isClient) {
 
-            // Get the player's current max health attribute
-            EntityAttributeInstance healthAttribute = user.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
+                // Get the player's current max health attribute
+                EntityAttributeInstance healthAttribute = user.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
 
-            // Check if the health attribute is not null and increase max health
-            if (healthAttribute != null) {
-                System.out.println("health attribute found. current base value " + healthAttribute.getBaseValue());
+                // Check if the health attribute is not null and increase max health
+                if (healthAttribute != null) {
 
-                // Increase max health by 2 (one heart)
-                healthAttribute.setBaseValue(healthAttribute.getBaseValue() + 2.0);
-                System.out.println("new health value: " + healthAttribute.getBaseValue());
+                    // Check if max health has been reached or not
+                    if (healthAttribute.getBaseValue() < 29) {
 
+                        // Increase max health by 2 (one heart)
+                        healthAttribute.setBaseValue(healthAttribute.getBaseValue() + 2.0);
 
-                // Consume the item
-                itemStack.decrement(1);
+                        // Consume the item
+                        itemStack.decrement(1);
 
-                return TypedActionResult.success(itemStack, world.isClient());
-            } else {
-                System.out.println("Health attribute is null");
+                        // Return
+                        return TypedActionResult.success(itemStack, world.isClient());
+
+                    } else {
+                        serverPlayer.sendMessage(Text.of("The Heart of a Lost Soul isn't potent enough to further increase your health. Max Health Reached [15 Hearts]."));
+                    }
+                }
             }
-        } else {
-            System.out.println("Use method called on client side");
         }
 
         return TypedActionResult.pass(itemStack);
