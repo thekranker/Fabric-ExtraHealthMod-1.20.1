@@ -5,12 +5,17 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 import net.minecraft.text.Text;
 import net.minecraft.server.network.ServerPlayerEntity;
+
+
 
 public class HeartOfALostSoulItem extends Item {
 
@@ -39,6 +44,9 @@ public class HeartOfALostSoulItem extends Item {
 
                         // Increase max health by 2 (one heart)
                         healthAttribute.setBaseValue(healthAttribute.getBaseValue() + 2.0);
+
+                        // Play totem animation and effects
+                        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_TOTEM_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
                         // Consume the item
                         itemStack.decrement(1);
