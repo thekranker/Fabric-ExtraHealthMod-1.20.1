@@ -1,6 +1,7 @@
 package net.bananaman532.extrahealthmod.item;
 
 import net.bananaman532.extrahealthmod.ExtraHealthMod;
+import net.bananaman532.extrahealthmod.item.custom.HeartOfALostSoulItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -11,7 +12,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
-    public static final Item HEART = registerItem("heart", new Item(new FabricItemSettings()));
+    public static final Item HEART = registerItem("heart", new HeartOfALostSoulItem(new FabricItemSettings()));
 
     private static void addItemsToItemGroup(FabricItemGroupEntries entries) {
         entries.add(HEART);
