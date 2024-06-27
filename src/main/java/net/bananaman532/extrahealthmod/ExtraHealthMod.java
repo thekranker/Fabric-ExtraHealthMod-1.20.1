@@ -17,5 +17,7 @@ public class ExtraHealthMod implements ModInitializer {
 		ModItems.registerModItems();
 
 		ModLootTableModifiers.modifyLootTables();
+
+		PlayerDeathListener.register();
 	}
 }
