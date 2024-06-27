@@ -50,17 +50,19 @@ public class HeartOfALostSoulItem extends Item {
                         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_TOTEM_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
                         // Spawn Totem of Undying particles
-                         if (world instanceof ServerWorld serverWorld) {
-                             for (int i = 0; i < 64; i++) {
-                                 double d = (double) (world.random.nextFloat() * 2.0F);
-                                 double e = (double) (world.random.nextFloat() * 2.0F);
-                                 double f = (double) (world.random.nextFloat() * 2.0F);
-                                 serverWorld.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, user.getX() - 1.0 + d, user.getY() - 0.5 + e, user.getZ() - 1.0 + f, 1, 0.0, 0.0, 0.0, 0.0);
-                             }
-                         }
+                        if (world instanceof ServerWorld serverWorld) {
+                            double angleIncrement = Math.PI / 16;
+                            for (int i = 0; i < 256; i++) {
+                                double angle = i * angleIncrement;
+                                double xOffset = Math.cos(angle) * 1.5;
+                                double zOffset = Math.sin(angle) * 1.5;
+                                double yOffset = 1 + (world.random.nextFloat() * 4.0);
+                                serverWorld.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, user.getX() + xOffset, user.getY() + yOffset, user.getZ() + zOffset, 1, -xOffset * 0.1, 0, -zOffset * 0.1, 0.0);
+                            }
+                        }
 
 
-                         // Consume the item
+                        // Consume the item
                         itemStack.decrement(1);
 
                         // Return
