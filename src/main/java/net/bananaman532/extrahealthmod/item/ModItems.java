@@ -12,7 +12,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
-    public static final Item HEART = registerItem("heart", new HeartOfALostSoulItem(new FabricItemSettings()));
+    public static final Item HEART = registerItem("heart", new HeartOfALostSoulItem(new FabricItemSettings().maxCount(1)));
 
     private static void addItemsToItemGroup(FabricItemGroupEntries entries) {
         entries.add(HEART);

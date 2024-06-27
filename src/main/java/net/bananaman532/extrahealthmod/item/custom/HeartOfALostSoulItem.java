@@ -23,6 +23,7 @@ public class HeartOfALostSoulItem extends Item {
         super(settings);
     }
 
+
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 
