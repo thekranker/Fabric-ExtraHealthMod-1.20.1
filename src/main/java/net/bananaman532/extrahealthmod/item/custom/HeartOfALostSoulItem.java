@@ -1,5 +1,7 @@
 package net.bananaman532.extrahealthmod.item.custom;
 
+import net.bananaman532.extrahealthmod.ExtraHealthMod;
+import net.bananaman532.extrahealthmod.server.DeathCounterState;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
@@ -40,8 +42,17 @@ public class HeartOfALostSoulItem extends Item {
                 // Check if the health attribute is not null and increase max health
                 if (healthAttribute != null) {
 
+                    // Death Counter
+                    DeathCounterState state = ExtraHealthMod.getDeathCounterState(serverPlayer.getServer());
+                    int currentDeathCount = state.getDeathCount(user.getUuid());
+
+                    // Decreasing death count upon use
+                    if (currentDeathCount > (-5)) {
+                        state.decrementDeathCount(user.getUuid());
+                    }
+
                     // Check if max health has been reached or not
-                    if (healthAttribute.getBaseValue() < 29) {
+                    if (currentDeathCount > (-5)) {
 
                         // Increase max health by 2 (one heart)
                         healthAttribute.setBaseValue(healthAttribute.getBaseValue() + 2.0);
@@ -66,11 +77,14 @@ public class HeartOfALostSoulItem extends Item {
                         // Consume the item
                         itemStack.decrement(1);
 
+                        // Completion Message
+                        serverPlayer.sendMessage(Text.of("A lost soul has bestowed you with health, restoring one heart."));
+
                         // Return
                         return TypedActionResult.success(itemStack, world.isClient());
 
                     } else {
-                        serverPlayer.sendMessage(Text.of("The Heart of a Lost Soul isn't potent enough to further increase your health. Max Health Reached [15 Hearts]."));
+                        serverPlayer.sendMessage(Text.of("The Heart of a Lost Soul isn't potent enough to further increase your health."));
                     }
                 }
             }

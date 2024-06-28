@@ -23,6 +23,10 @@ public class DeathCounterState extends PersistentState {
         deathCounts.put(player, getDeathCount(player) + 1);
     }
 
+    public void decrementDeathCount(UUID player) {
+        deathCounts.put(player, getDeathCount(player) - 1);
+    }
+
 
     // Method to serialize the data
     public NbtCompound writeNbt(NbtCompound nbt) {
