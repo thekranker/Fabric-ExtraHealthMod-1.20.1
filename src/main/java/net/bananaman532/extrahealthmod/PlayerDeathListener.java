@@ -6,6 +6,7 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.world.GameMode;
 
 import java.util.UUID;
 
@@ -13,6 +14,7 @@ public class PlayerDeathListener {
 
     private static final UUID HEALTH_MODIFIER_UUID = UUID.fromString("12345678-1234-1234-1234-123456789012");
     private static final String HEALTH_MODIFIER_NAME = "Health Reduction on Death";
+    private static final double HEALTH_REDUCTION_PER_DEATH = 2.0; // 1 heart = 2 health points
 
 
     public static void register() {
@@ -36,7 +38,7 @@ public class PlayerDeathListener {
         if (healthAttribute != null) {
             healthAttribute.removeModifier(HEALTH_MODIFIER_UUID);
 
-            double healthReduction = deathCount * 2; // Calculates reduction of health based on deaths
+            double healthReduction = deathCount * HEALTH_REDUCTION_PER_DEATH; // Calculates reduction of health based on deaths
 
             healthAttribute.addPersistentModifier(new EntityAttributeModifier(
                     HEALTH_MODIFIER_UUID,
@@ -48,8 +50,15 @@ public class PlayerDeathListener {
             // Ensure the player's health doesn't go below 1
             double newMaxHealth = Math.max(healthAttribute.getValue(), 1.0);
             player.setHealth((float) Math.min(player.getHealth(), newMaxHealth));
+
+            // Set player to spectator mode if they've lost all 10 lives
+            if (deathCount > 9) {
+                player.changeGameMode(GameMode.SPECTATOR);
+
+            }
         }
     }
+
 
     private static void incrementDeathCount(ServerPlayerEntity player) {
         MinecraftServer server = player.getServer();

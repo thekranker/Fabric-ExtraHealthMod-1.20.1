@@ -24,6 +24,7 @@ public class ExtraHealthMod implements ModInitializer {
 
 		ModLootTableModifiers.modifyLootTables();
 
+		PlayerDeathListener.register();
 
 		ServerLifecycleEvents.SERVER_STARTED.register(server -> {
 			PersistentStateManager persistentStateManager = server.getOverworld().getPersistentStateManager();
@@ -32,7 +33,6 @@ public class ExtraHealthMod implements ModInitializer {
 					DeathCounterState::new,
 					MOD_ID + "_death_counter"
 			);
-			PlayerDeathListener.register();
 		});
 	}
 
