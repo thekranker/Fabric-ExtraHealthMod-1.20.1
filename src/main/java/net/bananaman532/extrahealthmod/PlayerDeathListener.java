@@ -10,61 +10,78 @@ import net.minecraft.world.GameMode;
 
 import java.util.UUID;
 
+
+
 public class PlayerDeathListener {
 
-    private static final UUID HEALTH_MODIFIER_UUID = UUID.fromString("12345678-1234-1234-1234-123456789012");
-    private static final String HEALTH_MODIFIER_NAME = "Health Reduction on Death";
-    private static final double HEALTH_REDUCTION_PER_DEATH = 2.0; // 1 heart = 2 health points
+    private static final UUID HEALTH_MODIFIER_UUID = UUID.fromString("12345678-1234-1234-1234-123456789012"); // unique health modifier ID
+    private static final String HEALTH_MODIFIER_NAME = "Health Reduction on Death"; // name of the health modifier
+    private static final double HEALTH_REDUCTION_PER_DEATH = 2.0; // amount of health reduced per death ( 1 heart = 2 health points)
+
 
 
     public static void register() {
+
+        // Event listener that triggers after a player respawns
         ServerPlayerEvents.AFTER_RESPAWN.register(((oldPlayer, newPlayer, alive) -> {
             if (!alive) {
                 incrementDeathCount(newPlayer);
                 reducePlayerHealth(newPlayer);
             }
         }));
+
     }
 
 
     private static void reducePlayerHealth(ServerPlayerEntity player) {
-        MinecraftServer server = player.getServer();
-        if (server == null) return;
 
-        DeathCounterState state = ExtraHealthMod.getDeathCounterState(server);
-        int deathCount = state.getDeathCount(player.getUuid());
+        // SERVER
+        MinecraftServer server = player.getServer(); // gets the server instance
+        if (server == null) return; // exits method if server instance is null
 
-        var healthAttribute = player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
+        // DEATH COUNTER
+        DeathCounterState state = ExtraHealthMod.getDeathCounterState(server); // retrieves the 'DeathCounterState'
+        int deathCount = state.getDeathCount(player.getUuid()); // gets the death count of the player using the player's UUID
+
+
+        // PLAYER HEALTH
+        var healthAttribute = player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH); // gets player's health attribute
+
         if (healthAttribute != null) {
-            healthAttribute.removeModifier(HEALTH_MODIFIER_UUID);
+            healthAttribute.removeModifier(HEALTH_MODIFIER_UUID); // removes any existing health modifiers with same UUID
 
-            double healthReduction = deathCount * HEALTH_REDUCTION_PER_DEATH; // Calculates reduction of health based on deaths
+            double healthReduction = deathCount * HEALTH_REDUCTION_PER_DEATH; // calculates reduction of health based on deaths
 
+
+            // Adds a new persistent modifier to reduce the player's health
             healthAttribute.addPersistentModifier(new EntityAttributeModifier(
                     HEALTH_MODIFIER_UUID,
                     HEALTH_MODIFIER_NAME,
-                    -healthReduction, // Decrease by 1 heart (2 health points)
+                    -healthReduction, // decrease by 1 heart (2 health points)
                     EntityAttributeModifier.Operation.ADDITION
             ));
 
-            // Ensure the player's health doesn't go below 1
-            double newMaxHealth = Math.max(healthAttribute.getValue(), 1.0);
-            player.setHealth((float) Math.min(player.getHealth(), newMaxHealth));
 
-            // Set player to spectator mode if they've lost all 10 lives
-            if (deathCount > 9) {
-                player.changeGameMode(GameMode.SPECTATOR);
+            // Set player to spectator mode after 10 deaths
+            if (deathCount >= 10) player.changeGameMode(GameMode.SPECTATOR);
 
-            }
+
+            // Debug
+            System.out.println("Total Deaths: " + deathCount);
         }
     }
 
 
+
     private static void incrementDeathCount(ServerPlayerEntity player) {
-        MinecraftServer server = player.getServer();
+        MinecraftServer server = player.getServer(); // gets the server instance
+
+        // Increments the player's death count if the server is not null
         if (server != null) {
             DeathCounterState state = ExtraHealthMod.getDeathCounterState(server);
             state.incrementDeathCount(player.getUuid());
         }
     }
+
+
 }
