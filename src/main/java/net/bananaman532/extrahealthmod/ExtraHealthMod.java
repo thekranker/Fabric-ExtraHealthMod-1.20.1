@@ -2,7 +2,7 @@ package net.bananaman532.extrahealthmod;
 
 import net.bananaman532.extrahealthmod.item.ModItems;
 import net.bananaman532.extrahealthmod.server.DeathCounterState;
-import net.bananaman532.extrahealthmod.util.ModLootTableModifiers;
+import net.bananaman532.extrahealthmod.loot.ModLootTableModifiers;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;

@@ -18,12 +18,12 @@ public class ModItems {
     // Holds an instance of the 'HeartOfALostSoul' item.
     // The item is registered using the 'registerItem' method, is given the name "heart".
     // Initialized with 'FabricItemSettings' that specify a maximum stack count of 1.
-    public static final Item HEART = registerItem("heart", new HeartOfALostSoulItem(new FabricItemSettings().maxCount(1)));
+    public static final Item HEART_OF_A_LOST_SOUL = registerItem("heart", new HeartOfALostSoulItem(new FabricItemSettings().maxCount(1)));
 
 
     // Includes the custom item in an item group, making it appear in the creative inventory tab
     private static void addItemsToItemGroup(FabricItemGroupEntries entries) {
-        entries.add(HEART);
+        entries.add(HEART_OF_A_LOST_SOUL);
     }
 
     // Registers an item in the Minecraft item registry - returns the registered item

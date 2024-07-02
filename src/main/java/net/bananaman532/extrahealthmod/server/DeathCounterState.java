@@ -48,7 +48,7 @@ public class DeathCounterState extends PersistentState {
         deathCounts.forEach((uuid, count) -> deathsNbt.putInt(uuid.toString(), count));
         nbt.put("death_counts", deathsNbt);
         return nbt;
-    }
+}
 
 
     // Method to deserialize the data
