@@ -40,10 +40,14 @@ public class ModLootTableModifiers {
     private static final Identifier JUNGLE_TEMPLE_ID = new Identifier("minecraft", "chests/jungle_temple");
     private static final Identifier RUINED_PORTAL_ID = new Identifier("minecraft", "chests/ruined_portal");
     private static final Identifier SHIPWRECK_TREASURE_ID = new Identifier("minecraft", "chests/shipwreck_treasure");
+    private static final Identifier SHIPWRECK_MAP_ID = new Identifier("minecraft", "chests/shipwreck_map");
+    private static final Identifier SHIPWRECK_SUPPLY_ID = new Identifier("minecraft", "chests/shipwreck_supply");
     private static final Identifier STRONGHOLD_CORRIDOR_ID = new Identifier("minecraft", "chests/stronghold_corridor");
     private static final Identifier STRONGHOLD_CROSSING_ID = new Identifier("minecraft", "chests/stronghold_crossing");
     private static final Identifier UNDERWATER_RUIN_BIG_ID = new Identifier("minecraft", "chests/underwater_ruin_big");
     private static final Identifier UNDERWATER_RUIN_SMALL_ID = new Identifier("minecraft", "chests/underwater_ruin_small");
+    private static final Identifier DESERT_PYRAMID_ID = new Identifier("minecraft", "chests/desert_pyramid");
+
 
 
 
@@ -115,7 +119,7 @@ public class ModLootTableModifiers {
 
 
             // VERY LOW DROP RATE LOOT TABLES
-            if (ZOMBIE_ID.equals(id) || PILLAGER_OUTPOST_ID.equals(id) || ABANDONED_MINESHAFT_ID.equals(id) || IGLOO_CHEST_ID.equals(id) || JUNGLE_TEMPLE_ID.equals(id) || RUINED_PORTAL_ID.equals(id) || SHIPWRECK_TREASURE_ID.equals(id) || STRONGHOLD_CORRIDOR_ID.equals(id) || STRONGHOLD_CROSSING_ID.equals(id) || UNDERWATER_RUIN_BIG_ID.equals(id) || UNDERWATER_RUIN_SMALL_ID.equals(id)) {
+            if (ZOMBIE_ID.equals(id) || PILLAGER_OUTPOST_ID.equals(id) || ABANDONED_MINESHAFT_ID.equals(id) || IGLOO_CHEST_ID.equals(id) || JUNGLE_TEMPLE_ID.equals(id) || RUINED_PORTAL_ID.equals(id) || SHIPWRECK_TREASURE_ID.equals(id)|| SHIPWRECK_MAP_ID.equals(id)|| SHIPWRECK_SUPPLY_ID.equals(id) || STRONGHOLD_CORRIDOR_ID.equals(id) || STRONGHOLD_CROSSING_ID.equals(id) || UNDERWATER_RUIN_BIG_ID.equals(id) || UNDERWATER_RUIN_SMALL_ID.equals(id) || DESERT_PYRAMID_ID.equals(id)) {
 
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
