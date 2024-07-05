@@ -124,7 +124,7 @@ public class ModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(1f))
-                        .with(ItemEntry.builder(ModItems.HEART))
+                        .with(ItemEntry.builder(ModItems.HEART_OF_A_LOST_SOUL))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
                 tableBuilder.pool(poolBuilder.build());
 
@@ -132,7 +132,7 @@ public class ModLootTableModifiers {
                 LootPool.Builder poolBuilder1 = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.5f))
-                        .with(ItemEntry.builder(ModItems.HEART))
+                        .with(ItemEntry.builder(ModItems.HEART_OF_A_LOST_SOUL))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
                 tableBuilder.pool(poolBuilder1.build());
 
@@ -145,7 +145,7 @@ public class ModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(1.0f))
-                        .with(ItemEntry.builder(ModItems.HEART))
+                        .with(ItemEntry.builder(ModItems.HEART_OF_A_LOST_SOUL))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
                 tableBuilder.pool(poolBuilder.build());
 
@@ -158,7 +158,7 @@ public class ModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.75f))
-                        .with(ItemEntry.builder(ModItems.HEART))
+                        .with(ItemEntry.builder(ModItems.HEART_OF_A_LOST_SOUL))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
                 tableBuilder.pool(poolBuilder.build());
 
@@ -171,7 +171,7 @@ public class ModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.05f))
-                        .with(ItemEntry.builder(ModItems.HEART))
+                        .with(ItemEntry.builder(ModItems.HEART_OF_A_LOST_SOUL))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
                 tableBuilder.pool(poolBuilder.build());
 
@@ -184,7 +184,7 @@ public class ModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.03f))
-                        .with(ItemEntry.builder(ModItems.HEART))
+                        .with(ItemEntry.builder(ModItems.HEART_OF_A_LOST_SOUL))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
                 tableBuilder.pool(poolBuilder.build());
 
@@ -197,7 +197,7 @@ public class ModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.01f))
-                        .with(ItemEntry.builder(ModItems.HEART))
+                        .with(ItemEntry.builder(ModItems.HEART_OF_A_LOST_SOUL))
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
                 tableBuilder.pool(poolBuilder.build());
 

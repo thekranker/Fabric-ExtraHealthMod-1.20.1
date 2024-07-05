@@ -41,8 +41,7 @@ public class HeartOfALostSoulItem extends Item {
         // WHEN USING ITEM
         if (user instanceof ServerPlayerEntity serverPlayer) { // checks if the player using the item is a 'ServerPlayerEntity', meaning the code is running on the server side
 
-            // Ensures code is executed only on server side and not the client side
-            if (!world.isClient) {
+            if (!world.isClient) { // ensures code is executed only on server side and not the client side
                 EntityAttributeInstance healthAttribute = user.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH); // gets the player's current max health attribute
 
 

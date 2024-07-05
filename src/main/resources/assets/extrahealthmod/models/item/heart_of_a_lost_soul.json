@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "extrahealthmod:item/heart_of_a_lost_soul"
+  }
+}
