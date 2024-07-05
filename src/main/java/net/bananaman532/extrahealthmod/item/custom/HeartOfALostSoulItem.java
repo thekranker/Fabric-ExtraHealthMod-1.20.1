@@ -53,11 +53,11 @@ public class HeartOfALostSoulItem extends Item {
                     int currentDeathCount = state.getDeathCount(user.getUuid()); // retrieves player's death count using the player's UUID
 
                     // Removes a death from the death count while deaths are greater than -5. [Caps Max Health]
-                    if (currentDeathCount > (-5)) {
+                    if (currentDeathCount > (-20)) {
                         state.decrementDeathCount(user.getUuid());
                     }
 
-                    if (currentDeathCount > (-5)) {  // ensures max health hasn't yet been reached
+                    if (currentDeathCount > (-20)) {  // ensures max health hasn't yet been reached
 
                         // Increase max health by 2 (one heart)
                         healthAttribute.setBaseValue(healthAttribute.getBaseValue() + 2.0);
