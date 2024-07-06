@@ -8,6 +8,8 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 
 
@@ -51,9 +53,12 @@ public class SoulboundCharmHandler {
         // Heal the player
         player.setHealth(player.getMaxHealth());
 
-        // Add blindness effect for 5 seconds (100 ticks)
-        player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 100, 0));
-        player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 100, 0));
+        // Add blindness & nausea effect for 7.25 seconds (145 ticks)
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 145, 0));
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 145, 0));
+
+        // Play the custom sound
+        player.playSound(SoundEvent.of(ExtraHealthMod.SOULBOUND_CHARM_ACTIVATION_AUDIO), SoundCategory.PLAYERS, 1.0F, 1.0F);
 
         // Consume the charm
         SoulboundCharmItem.consumeCharm(player);

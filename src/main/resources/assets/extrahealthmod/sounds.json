@@ -1,0 +1,7 @@
+{
+  "soulbound_charm_activation_audio": {
+    "sounds": [
+      "extrahealthmod:soulbound_charm_activation_audio"
+    ]
+  }
+}

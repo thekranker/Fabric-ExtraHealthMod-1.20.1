@@ -7,7 +7,11 @@ import net.bananaman532.extrahealthmod.loot.ModLootTableModifiers;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.PersistentStateManager;
 
 
@@ -20,7 +24,7 @@ public class ExtraHealthMod implements ModInitializer {
 
 	public static final String MOD_ID = "extrahealthmod"; // Holds the mod's identifier
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID); // A static logger instance which logs messages with the mod's identifier. (Useful for debugging & tracking the mod's behavior)
-
+	public static final Identifier SOULBOUND_CHARM_ACTIVATION_AUDIO = new Identifier(MOD_ID, "soulbound_charm_activation_audio"); // Sound effect for when the 'Soulbound Charm' item is activated
 
 
 	@Override
@@ -33,6 +37,7 @@ public class ExtraHealthMod implements ModInitializer {
 		ModLootTableModifiers.modifyLootTables(); // modifies loot tables using the 'ModLootTableModifiers' class
 		PlayerDeathListener.register(); // registers a player death listener that tracks when a player respawns
 		SoulboundCharmHandler.register(); // registers a player death listener that prevents a player from dying if a 'Soulbound Charm' is present in their off-hand
+		Registry.register(Registries.SOUND_EVENT, SOULBOUND_CHARM_ACTIVATION_AUDIO, SoundEvent.of(SOULBOUND_CHARM_ACTIVATION_AUDIO));
 
 
 		// SERVER
