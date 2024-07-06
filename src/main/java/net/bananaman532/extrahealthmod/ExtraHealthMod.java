@@ -1,5 +1,6 @@
 package net.bananaman532.extrahealthmod;
 
+import net.bananaman532.extrahealthmod.item.ModItemGroups;
 import net.bananaman532.extrahealthmod.item.ModItems;
 import net.bananaman532.extrahealthmod.server.DeathCounterState;
 import net.bananaman532.extrahealthmod.loot.ModLootTableModifiers;
@@ -27,6 +28,7 @@ public class ExtraHealthMod implements ModInitializer {
 
 		// REGISTERS & MODIFICATIONS
 		ModItems.registerModItems(); // registers custom items defined in the 'ModItems' class
+		ModItemGroups.registerItemGroups(); // registers custom item groups (for creative inventory) defined in the 'ModItemGroups' class
 		ModLootTableModifiers.modifyLootTables(); // modifies loot tables using the 'ModLootTableModifiers' class
 		PlayerDeathListener.register(); // registers a player death listener that tracks when a player respawns
 

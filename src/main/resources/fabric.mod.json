@@ -12,7 +12,7 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "MIT",
-	"icon": "assets/extrahealthmod/icon.png",
+	"icon": "assets/extrahealthmod/textures/item/heart_of_a_lost_soul.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [

@@ -51,12 +51,12 @@ public class HeartOfALostSoulItem extends Item {
                     DeathCounterState state = ExtraHealthMod.getDeathCounterState(Objects.requireNonNull(serverPlayer.getServer())); // gets the 'DeathCounterState' object
                     int currentDeathCount = state.getDeathCount(user.getUuid()); // retrieves player's death count using the player's UUID
 
-                    // Removes a death from the death count while deaths are greater than -5. [Caps Max Health]
-                    if (currentDeathCount > (-20)) {
+                    // Removes a death from the death count while deaths are greater than -15. [Caps Max Health]
+                    if (currentDeathCount > (-15)) {
                         state.decrementDeathCount(user.getUuid());
                     }
 
-                    if (currentDeathCount > (-20)) {  // ensures max health hasn't yet been reached
+                    if (currentDeathCount > (-15)) {  // ensures max health hasn't yet been reached
 
                         // Increase max health by 2 (one heart)
                         healthAttribute.setBaseValue(healthAttribute.getBaseValue() + 2.0);
