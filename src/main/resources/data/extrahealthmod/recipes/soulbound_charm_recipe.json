@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "HGH",
+    " G "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "H": {
+      "item": "extrahealthmod:heart_of_a_lost_soul"
+    }
+  },
+  "result": {
+    "item": "extrahealthmod:soulbound_charm",
+    "count": 1
+  }
+}

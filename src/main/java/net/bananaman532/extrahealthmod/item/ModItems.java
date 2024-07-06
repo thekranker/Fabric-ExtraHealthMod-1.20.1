@@ -20,7 +20,7 @@ public class ModItems {
     // Each item is registered using the 'registerItem' method and are given their appropriate names.
     // Initialized with 'FabricItemSettings' that specify a maximum stack count of 1.
     public static final Item HEART_OF_A_LOST_SOUL = registerItem("heart_of_a_lost_soul", new HeartOfALostSoulItem(new FabricItemSettings().maxCount(1)));
-    public static final Item SOULBOUND_CHARM = registerItem("soulbound_charm", new Item(new FabricItemSettings().maxCount(1)));
+    public static final Item SOULBOUND_CHARM = registerItem("soulbound_charm", new SoulboundCharmItem(new FabricItemSettings().maxCount(1)));
 
 
     // Includes the custom item in an item group, making it appear in the creative inventory tab
