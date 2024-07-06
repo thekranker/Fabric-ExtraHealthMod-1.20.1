@@ -26,11 +26,14 @@ public class ExtraHealthMod implements ModInitializer {
 	@Override
 	public void onInitialize() { // Called when the mod is initialized
 
+
 		// REGISTERS & MODIFICATIONS
 		ModItems.registerModItems(); // registers custom items defined in the 'ModItems' class
 		ModItemGroups.registerItemGroups(); // registers custom item groups (for creative inventory) defined in the 'ModItemGroups' class
 		ModLootTableModifiers.modifyLootTables(); // modifies loot tables using the 'ModLootTableModifiers' class
 		PlayerDeathListener.register(); // registers a player death listener that tracks when a player respawns
+		SoulboundCharmHandler.register(); // registers a player death listener that prevents a player from dying if a 'Soulbound Charm' is present in their off-hand
+
 
 		// SERVER
 		// Registers an event listener for when the server starts
@@ -42,6 +45,7 @@ public class ExtraHealthMod implements ModInitializer {
 					MOD_ID + "_death_counter"
 			);
 		});
+
 
 	}
 

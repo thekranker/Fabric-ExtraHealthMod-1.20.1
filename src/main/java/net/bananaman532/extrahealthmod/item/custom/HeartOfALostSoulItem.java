@@ -2,6 +2,8 @@ package net.bananaman532.extrahealthmod.item.custom;
 
 import net.bananaman532.extrahealthmod.ExtraHealthMod;
 import net.bananaman532.extrahealthmod.server.DeathCounterState;
+import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.item.TooltipData;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,8 +19,9 @@ import net.minecraft.world.World;
 import net.minecraft.text.Text;
 import net.minecraft.server.network.ServerPlayerEntity;
 
+import java.util.List;
 import java.util.Objects;
-
+import java.util.Optional;
 
 
 public class HeartOfALostSoulItem extends Item {
@@ -27,6 +30,8 @@ public class HeartOfALostSoulItem extends Item {
     public HeartOfALostSoulItem(Settings settings) {
         super(settings);
     }
+
+
 
 
     @Override
@@ -52,11 +57,11 @@ public class HeartOfALostSoulItem extends Item {
                     int currentDeathCount = state.getDeathCount(user.getUuid()); // retrieves player's death count using the player's UUID
 
                     // Removes a death from the death count while deaths are greater than -20. [Caps Max Health]
-                    if (currentDeathCount > (-20)) {
+                    if (currentDeathCount > (-10)) {
                         state.decrementDeathCount(user.getUuid());
                     }
 
-                    if (currentDeathCount > (-20)) {  // ensures max health hasn't yet been reached
+                    if (currentDeathCount > (-10)) {  // ensures max health hasn't yet been reached
 
                         // Increase max health by 2 (one heart)
                         healthAttribute.setBaseValue(healthAttribute.getBaseValue() + 2.0);
@@ -80,14 +85,14 @@ public class HeartOfALostSoulItem extends Item {
                         itemStack.decrement(1);
 
                         // Completion chat message
-                        serverPlayer.sendMessage(Text.of("A lost soul has bestowed you with health, restoring one heart."));
+                        serverPlayer.sendMessage(Text.of("§aA lost soul has bestowed you with health. §f// §dRestoring One Heart§f //"));
 
                         // Return
                         return TypedActionResult.success(itemStack, world.isClient()); // returns a successful action result, indicating the item was used successfully.
 
                     } else {
                         // Failure chat message
-                        serverPlayer.sendMessage(Text.of("The Heart of a Lost Soul isn't potent enough to further increase your health."));
+                        serverPlayer.sendMessage(Text.of("§5The §4Heart of a Lost Soul §5isn't potent enough to further increase your health."));
                     }
                 }
             }
@@ -95,5 +100,9 @@ public class HeartOfALostSoulItem extends Item {
 
         return TypedActionResult.pass(itemStack); // If the item cannot be used > returns a pass action result, indicating that the item usage did not succeed
     }
+
+
+
+
 }
 
