@@ -16,7 +16,7 @@ If you're not ready to face permanent item loss, the **Soulbound Charm** gives y
 
 - **Permanent health loss on death** — your max health decreases each time you die
 - **Heart of a Lost Soul** — a rare collectible that restores lost max health, found in world-generated chests and zombie drops
-- **Modified zombie loot tables** — zombies have a chance to drop Hearts of a Lost Soul
+- **Modified mob loot tables** — hostile mobs have a chance to drop Hearts of a Lost Soul
 - **Soulbound Charm** — a custom item that, on death, teleports you to spawn and prevents item loss
 - **Custom sound effects** — audio feedback tied to health loss and recovery events
 
